@@ -6,11 +6,17 @@ CC = gcc
 PS2PDF = ps2pdf14
 DIST_FILE = tcp-proxy.tar.gz
 
-tcp-proxy: tcp-proxy.c
-	$(CC) $(LFLAGS) -o $@ $^ 
+tcp-proxy: tcp-proxy.c acceptor.o bridge.o
+	$(CC) $(LFLAGS) -o $@ $^
+
+bridge.o: Bridge.c Acceptor.h Bridge.h
+	$(CC) $(LFLAGS) -c -o $@ $<
+
+acceptor.o: Acceptor.c Acceptor.h Bridge.h
+	$(CC) $(LFLAGS) -c -o $@ $<
 
 dist: clean
-	tar -czf $(DIST_FILE) ../tcp-proxy --exclude=$(DIST_FILE) --exclude=".svn" 
+	tar -czf $(DIST_FILE) ../tcp-proxy-single-thread --exclude="*.tar.gz"
 
 clean:
 	rm -fr .DS_Store *.tar.gz *.ps *.pdf *.o *.dSYM *~ tcp-proxy test-tcpproxy
