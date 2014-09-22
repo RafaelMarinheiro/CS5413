@@ -1,5 +1,6 @@
 #include "Acceptor.h"
 #include "Bridge.h"
+#include "Worker.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,11 +14,25 @@
 #include <arpa/inet.h>
 #include <signal.h>
 #include <pthread.h>
-// #include <semaphore.h>
+#include <semaphore.h>
 
 const Proxy_Error_t PROXY_ERROR_SUCCESS 		= 0;
 const Proxy_Error_t PROXY_ERROR_TIMEOUT 		= 1;
 const Proxy_Error_t PROXY_ERROR_WRITE_ERROR 	= 2;
+
+struct _proxy_acceptor_t{
+	char * remote_name;
+	unsigned short remote_port;
+	unsigned short local_port;
+	sem_t connection_semaphore;
+	unsigned int buffer_size;
+	int timeout_limit;
+
+	//Workers
+
+	int num_workers;
+	Proxy_Worker_t ** workers;
+};
 
 Proxy_Acceptor_t * Proxy_Create_Acceptor(char * remote_name, unsigned short remote_port, unsigned short local_port,
 									     unsigned int max_connections, unsigned int buffer_size, int timeout_limit,
@@ -46,7 +61,7 @@ Proxy_Acceptor_t * Proxy_Create_Acceptor(char * remote_name, unsigned short remo
 		rest--;
 	}
 
-	sem_init(&acceptor->connection_semaphore, 0, max_connections);
+	sem_init(&ret->connection_semaphore, 0, max_connections);
 
 	return ret;
 }
@@ -64,8 +79,8 @@ int Proxy_Destroy_Acceptor(Proxy_Acceptor_t * acceptor){
 }
 
 int Proxy_Notify_Connection_Closed(Proxy_Acceptor_t * acceptor, Proxy_Error_t error){
-	sem_post(&(acceptor->connection_semaphore));
 	printf("Connection closed\n");
+	sem_post(&(acceptor->connection_semaphore));
 	return 0;
 }
 
@@ -118,20 +133,28 @@ int Proxy_Start_Acceptor(Proxy_Acceptor_t * acceptor){
 	listen(proxy_fd, MAX_LISTEN_BACKLOG);
 
 	// printf("Listening on port %d\n", acceptor->local_port);
+	int worker_id;
+	for(worker_id = 0; worker_id < acceptor->num_workers; worker_id++){
+		Proxy_Start_Worker(acceptor->workers[worker_id]);
+	}
 
 	//Loop
 	while(1){
 		// printf("HI\n");
 		// int value; 
-	    // int e = sem_getvalue(&(acceptor->connection_semaphore), &value); 
-	    // printf("The value of the semaphors is %d %d\n", value, e);
+	 //    int e = sem_getvalue(&(acceptor->connection_semaphore), &value); 
+	 //    printf("The value of the semaphore is %d %d\n", value, e);
+	 //    fprintf(stderr, "error %s\n", strerror(errno));
 		sem_wait(&(acceptor->connection_semaphore));
+		// printf("PASSEI\n");
 
 		memset(&client_addr, 0, sizeof(struct sockaddr_in));
 		addr_size = sizeof(client_addr);
 
 		client_socket = accept(proxy_fd, (struct sockaddr *)&client_addr,
 					&addr_size);
+
+		printf("Connection accepted\n");
 
 		if(client_socket == -1){
 			fprintf(stderr, "accept error %s\n", strerror(errno));
@@ -177,16 +200,15 @@ int Proxy_Start_Acceptor(Proxy_Acceptor_t * acceptor){
 		//Assign the Bridge to a Worker
 		int i;
 		int found = 0;
-		for(i = 0; i < acceptor->num_workers && found != 0; i++){
+		for(i = 0; i < acceptor->num_workers && found == 0; i++){
 			if(Proxy_Try_Add_Bridge(acceptor->workers[i], bridge)){
-				printf("Assigned to worker %d\n", i);
 				found = 1;
 			}
 		}
 
 		if(found == 0){
-			printf("GIGANTIC ERROR\n");
-			sem_post(&(acceptor->connection_semaphore));
+			Proxy_Close_Bridge(bridge);
+			Proxy_Destroy_Bridge(bridge);
 		}
 	}
 

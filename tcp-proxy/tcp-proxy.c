@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_CONNECTIONS 1
+#define MAX_THREADS 4
+#define MAX_CONNECTIONS 2
 #define BUFFER_SIZE 8192
 #define TIMEOUT_LIMIT 1
 
@@ -24,11 +25,12 @@ int main(int argc, char ** argv){
 	remote_port = atoi(argv[arg_idx++]);
 	local_port = atoi(argv[arg_idx++]);
 
-	Proxy_Acceptor_t acceptor = Proxy_Create_Acceptor(remote_name,
+	Proxy_Acceptor_t * acceptor = Proxy_Create_Acceptor(remote_name,
 													  remote_port, local_port,
 													  MAX_CONNECTIONS,
 													  BUFFER_SIZE,
-													  TIMEOUT_LIMIT);
+													  TIMEOUT_LIMIT,
+													  MAX_THREADS);
 
 	return Proxy_Start_Acceptor(acceptor);
 }

@@ -1,6 +1,8 @@
 #ifndef WORKER_H
 #define WORKER_H
 
+#include "Bridge.h"
+
 struct _proxy_worker_t;
 typedef struct _proxy_worker_t Proxy_Worker_t;
 
