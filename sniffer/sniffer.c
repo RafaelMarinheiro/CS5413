@@ -256,10 +256,10 @@ static unsigned int sniffer_nf_hook(unsigned int hook, struct sk_buff* skb,
             flow.dest_port = ntohs(tcph->dest);
 
             if(match_sniffer_flow_table(&flow_table, &flow) != SNIFFER_ACTION_NOT_FOUND){
-                printk(KERN_DEBUG "Accepted %pI4:%d -> %pI4:%d\n", flow.src_ip, flow.src_port, flow.dest_ip, flow.dest_port);    
+                printk(KERN_DEBUG "Accepted %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);    
                 return NF_ACCEPT;
             } else{
-                printk(KERN_DEBUG "Rejected %pI4:%d -> %pI4:%d\n", flow.src_ip, flow.src_port, flow.dest_ip, flow.dest_port);
+                printk(KERN_DEBUG "Rejected %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);    
                 return NF_DROP;
             }
         }
