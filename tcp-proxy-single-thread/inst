@@ -1,0 +1,304 @@
+RESERVATION	r-960041AF	515135799864	gp-hs634-tes
+INSTANCE	i-06283C44	emi-C4A24195			stopped	kp-hs634-test	0		m1.small	2014-09-03T14:00:02.681Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-7A2941CD	2014-09-03T14:00:03.006Z	true		
+RESERVATION	r-7810401D	515135799864	gp-rf356-test
+INSTANCE	i-124C404F	emi-C4A24195			stopped	kp-rf356-test	0		m1.small	2014-09-13T03:26:40.093Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-35673A85	2014-09-13T03:26:40.444Z	true		
+RESERVATION	r-7109421C	515135799864	gp-xf54-test
+INSTANCE	i-00B64270	emi-C4A24195	128.84.9.155	172.16.141.50	running	kp-xf54-test	0		m1.small	2014-09-04T17:50:39.336Z	redcloud				monitoring-disabled	128.84.9.155	172.16.141.50			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-1A83422E	2014-09-04T17:50:39.702Z	true		
+RESERVATION	r-23F1433E	515135799864	gp-jc2838-test
+INSTANCE	i-A9D23E6D	emi-C4A24195			stopped	kp-jc2838-test	0		m1.small	2014-09-10T00:17:12.879Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-19854303	2014-09-10T00:17:13.187Z	true		
+RESERVATION	r-A179411C	515135799864	gp-nn262-test
+INSTANCE	i-9F2C4726	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-09T16:26:42.848Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-A5033A64	2014-09-09T16:26:43.233Z	true		
+RESERVATION	r-C5A84446	515135799864	gp-nn262-test
+INSTANCE	i-31F0433F	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-09T16:37:57.053Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-2B6C39E5	2014-09-09T16:37:57.402Z	true		
+RESERVATION	r-6B704169	515135799864	gp-xf54-test
+INSTANCE	i-EEC842BE	emi-C4A24195			stopped	kp-xf54-test	0		m1.small	2014-09-04T17:51:16.574Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-C1DF40A6	2014-09-04T17:51:16.888Z	true		
+RESERVATION	r-91174391	515135799864	gp-jj329-test
+INSTANCE	i-96184127	emi-52243F73			stopped	kp-jj329-lab0	0		m1.small	2014-09-04T21:14:55.415Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-429141EB	2014-09-04T21:14:55.725Z	false		
+RESERVATION	r-A8CC431A	515135799864	default
+INSTANCE	i-2B8042D4	emi-C4A24195	128.84.9.144	172.16.138.13	running		0		m1.small	2014-09-03T05:14:31.439Z	redcloud				monitoring-disabled	128.84.9.144	172.16.138.13			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-CD843E92	2014-09-03T05:14:31.784Z	true		
+RESERVATION	r-7F0942AD	515135799864	gp-xl267-test
+INSTANCE	i-8A3F432B	emi-C4A24195			stopped	kp-xl267-test	0		m1.small	2014-09-08T15:25:29.811Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-F2723BC0	2014-09-08T15:25:30.202Z	true		
+RESERVATION	r-B3F54398	515135799864	gp-saa245-lab0
+INSTANCE	i-D89A3FBE	emi-C4A24195			stopped	kp-saa245-lab	0		m1.small	2014-09-03T04:37:50.734Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-A02B3EF5	2014-09-03T04:37:51.045Z	true		
+RESERVATION	r-967B3CD9	515135799864	gp-vs444-lab1
+INSTANCE	i-34E13D28	emi-C4A24195			stopped	kp-vs444-lab1	0		m1.small	2014-09-02T23:34:21.413Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-58403CC5	2014-09-02T23:34:21.723Z	true		
+RESERVATION	r-38AD3D37	515135799864	gp-dsd96-test
+INSTANCE	i-3225433D	emi-C4A24195	128.84.9.159	172.16.151.116	running	kp-dsd96-test	0		m1.small	2014-09-04T15:56:18.714Z	redcloud				monitoring-disabled	128.84.9.159	172.16.151.116			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-1BBB4280	2014-09-04T15:56:19.037Z	true		
+RESERVATION	r-AE3144FD	515135799864	gp-ys429-test
+INSTANCE	i-69EE3EA0	emi-C4A24195			stopped	kp-ys429-test	0		m1.small	2014-09-11T00:54:07.839Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-75AC40BA	2014-09-11T00:54:08.225Z	true		
+RESERVATION	r-6B094405	515135799864	gp-rf356-test
+INSTANCE	i-C1734232	emi-C4A24195			stopped	kp-rf356-test	0		m1.small	2014-09-13T03:25:09.820Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-EBE13AA9	2014-09-13T03:25:10.155Z	true		
+RESERVATION	r-55AE4350	515135799864	gp-xl267-test
+INSTANCE	i-FAD942CA	emi-C4A24195			stopped	kp-xl267-test	0		m1.small	2014-09-04T14:40:59.469Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-842B4021	2014-09-04T14:40:59.800Z	true		
+RESERVATION	r-1AB2405B	515135799864	gp-rf356-test
+INSTANCE	i-6D9D4498	emi-C4A24195	128.84.9.161	172.16.71.140	running	kp-rf356-test	0		m1.small	2014-09-13T03:32:18.211Z	redcloud				monitoring-disabled	128.84.9.161	172.16.71.140			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-C80C4069	2014-09-13T03:32:18.525Z	true		
+RESERVATION	r-BA4B46E4	515135799864	gp-jc2838-test
+INSTANCE	i-49444498	emi-C4A24195			stopped	kp-jc2838-test	0		m1.small	2014-09-03T19:03:28.747Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-6CCC455A	2014-09-03T19:03:29.046Z	true		
+RESERVATION	r-0CC643A7	515135799864	gp-nn262-test
+INSTANCE	i-036B43BA	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-09T16:41:07.052Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-8A2C43A3	2014-09-09T16:41:07.359Z	true		
+RESERVATION	r-099E3CFE	515135799864	gp-jc2838-test
+INSTANCE	i-1856435E	emi-C4A24195			stopped	kp-jc2838-test	0		m1.small	2014-09-03T03:06:04.008Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-7A5441F7	2014-09-03T03:06:04.330Z	true		
+RESERVATION	r-EE21414E	515135799864	gp-hw342-test
+INSTANCE	i-8AC04195	emi-C4A24195			stopped	kp-hw342-test	0		m1.small	2014-08-29T21:40:16.511Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-4FDE3DA1	2014-08-29T21:40:16.810Z	true		
+RESERVATION	r-DF284218	515135799864	gp-hw342-test
+INSTANCE	i-8D474559	emi-C4A24195			stopped	kp-hw342-test	0		m1.small	2014-09-03T00:26:02.775Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-28AA3EDC	2014-09-03T00:26:03.121Z	true		
+RESERVATION	r-6A8E4194	515135799864	gp-nn262-test
+INSTANCE	i-EBD94116	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-07T22:26:31.528Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-07C74068	2014-09-07T22:26:31.858Z	true		
+RESERVATION	r-07534299	515135799864	gp-yl2533-test
+INSTANCE	i-BB2D469C	emi-C4A24195			stopped	kp-yl2533-test	0		m1.small	2014-09-03T18:59:22.321Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-2A324200	2014-09-03T18:59:22.631Z	true		
+RESERVATION	r-EDCD3E99	515135799864	gp-av445-lab0
+INSTANCE	i-49464019	emi-C4A24195			stopped	kp-av445-lab0	0		m1.small	2014-09-02T21:23:29.530Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-66893EFE	2014-09-02T21:23:29.846Z	true		
+RESERVATION	r-091E4119	515135799864	gp-nn262-test
+INSTANCE	i-B03D43A1	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-10T00:32:54.173Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-0CC9410B	2014-09-10T00:32:54.558Z	true		
+RESERVATION	r-7FF1443D	515135799864	gp-jlf248-test
+INSTANCE	i-7F9F409E	emi-C4A24195	128.84.9.170	172.16.59.217	running	kp-jlf248-test	0		m1.small	2014-09-06T15:19:22.226Z	redcloud				monitoring-disabled	128.84.9.170	172.16.59.217			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-EF6640DE	2014-09-06T15:19:22.557Z	true		
+RESERVATION	r-E1B44765	515135799864	gp-zl456-test
+INSTANCE	i-486F4190	emi-C4A24195			stopped	kp-zl456-test	0		m1.small	2014-09-03T18:39:21.442Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-D5D33E74	2014-09-03T18:39:21.784Z	true		
+RESERVATION	r-E62D42DE	515135799864	gp-rb628-test
+INSTANCE	i-5BFE467B	emi-C4A24195			stopped	kp-rb628-test	0		m1.small	2014-09-03T05:09:33.453Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-503F414E	2014-09-03T05:09:33.747Z	true		
+RESERVATION	r-EB893F7F	515135799864	gp-fa97-first
+INSTANCE	i-D65F43A6	emi-C4A24195			stopped	kp-fa97-first	0		m1.small	2014-09-03T17:02:43.433Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-33F13D37	2014-09-03T17:02:43.736Z	true		
+RESERVATION	r-4D27448A	515135799864	gp-dmk257-test
+INSTANCE	i-B2A242B2	emi-C4A24195			stopped	kp-dmk257-test	0		m1.small	2014-09-03T23:09:11.833Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-9DA43DA5	2014-09-03T23:09:12.193Z	true		
+RESERVATION	r-82C7410E	515135799864	gp-rb628-test
+INSTANCE	i-DA384285	emi-C4A24195			stopped	kp-rb628-test	0		m1.small	2014-09-07T22:27:00.212Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-96603E6F	2014-09-07T22:27:00.568Z	true		
+RESERVATION	r-7CE445FB	515135799864	gp-am2633-test-vm
+INSTANCE	i-112C3DE7	emi-C4A24195	128.84.9.147	172.16.206.215	running	kp-am2633-test-vm	0		m1.small	2014-09-04T00:56:16.791Z	redcloud				monitoring-disabled	128.84.9.147	172.16.206.215			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-219E3F3B	2014-09-04T00:56:17.145Z	true		
+RESERVATION	r-AA0443B6	515135799864	gp-nn262-test
+INSTANCE	i-31D944C8	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-02T21:30:56.170Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-8FA53D23	2014-09-02T21:30:56.480Z	true		
+RESERVATION	r-FEFB3E4D	515135799864	gp-jc2838-test
+INSTANCE	i-D95D430C	emi-C4A24195	128.84.9.174	172.16.156.233	running	kp-jc2838-test	0		m1.small	2014-09-03T18:30:08.449Z	redcloud				monitoring-disabled	128.84.9.174	172.16.156.233			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-95773F34	2014-09-03T18:30:08.761Z	true		
+RESERVATION	r-89EA4357	515135799864	gp-kl568-test
+INSTANCE	i-58DD43FA	emi-C4A24195			stopped	kp-kl568-test	0		m1.small	2014-09-04T16:38:24.069Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-85123BC5	2014-09-04T16:38:24.372Z	true		
+RESERVATION	r-25B23F33	515135799864	gp-jc2838-test
+INSTANCE	i-A94544F2	emi-C4A24195			stopped	kp-jc2838-test	0		m1.small	2014-09-03T18:46:04.333Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-BE433733	2014-09-03T18:46:04.662Z	true		
+RESERVATION	r-FADC405C	515135799864	gp-hw342-test
+INSTANCE	i-0B9A4387	emi-C4A24195			stopped	kp-hw342-test	0		m1.small	2014-09-03T16:25:44.736Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-8DC33BCD	2014-09-03T16:25:45.046Z	true		
+RESERVATION	r-1132463F	515135799864	gp-nn262-test
+INSTANCE	i-C2AE45C9	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-09T17:56:51.063Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-7266408D	2014-09-09T17:56:51.371Z	true		
+RESERVATION	r-66DC4024	515135799864	gp-ab2546-test
+INSTANCE	i-713D42C4	emi-C4A24195			stopped	kp-ab2546-test	0		m1.small	2014-09-03T15:27:20.311Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-3C754256	2014-09-03T15:27:20.615Z	true		
+RESERVATION	r-948E44E9	515135799864	gp-ab2546-test
+INSTANCE	i-A96C3E85	emi-C4A24195			stopped	kp-ab2546-test	0		m1.small	2014-09-10T17:56:58.644Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-76C43E7F	2014-09-10T17:56:58.998Z	true		
+RESERVATION	r-FFA242C7	515135799864	gp-xf54-test
+INSTANCE	i-73A540A7	emi-C4A24195			stopped	kp-xf54-test	0		m1.small	2014-09-03T00:37:06.110Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-04963750	2014-09-03T00:37:06.436Z	true		
+RESERVATION	r-A1A93F99	515135799864	gp-jlf248-test
+INSTANCE	i-235B3C17	emi-4BEA3FDA			stopped	kp-jlf248-test	0		m1.small	2014-09-06T15:09:54.576Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-F85A3A0A	2014-09-06T15:09:54.927Z	false		
+RESERVATION	r-9661414C	515135799864	gp-dhs252-test
+INSTANCE	i-6466401A	emi-4BEA3FDA			stopped	kp-dhs252-test	0		m1.small	2014-09-03T15:09:51.919Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-1CBF43F8	2014-09-03T15:09:52.253Z	false		
+RESERVATION	r-C5943FD2	515135799864	gp-xl267-test
+INSTANCE	i-818F4144	emi-C4A24195			stopped	kp-xl267-test	0		m1.small	2014-09-04T17:27:29.652Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-71C53E46	2014-09-04T17:27:29.974Z	true		
+RESERVATION	r-83E9417B	515135799864	gp-rf356-test
+INSTANCE	i-30103F1E	emi-C4A24195			stopped	kp-rf356-test	0		m1.small	2014-09-13T03:22:37.825Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-B6793E55	2014-09-13T03:22:38.282Z	true		
+RESERVATION	r-0EAB40D9	515135799864	gp-zl456-test
+INSTANCE	i-EB5A4361	emi-C4A24195			stopped	kp-zl456-test	0		m1.small	2014-09-03T16:52:13.817Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-963F439A	2014-09-03T16:52:14.122Z	true		
+RESERVATION	r-BFEE4765	515135799864	gp-rf356-test
+INSTANCE	i-68EA400F	emi-C4A24195			stopped	kp-rf356-test	0		m1.small	2014-09-04T00:28:42.804Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-728940E2	2014-09-04T00:28:43.158Z	true		
+RESERVATION	r-BBF945B5	515135799864	gp-mad293-test
+INSTANCE	i-9A1B4411	emi-C4A24195			stopped	kp-mad293-test	0		m1.small	2014-09-07T16:31:39.470Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-7D553FDE	2014-09-07T16:31:39.886Z	true		
+RESERVATION	r-4C7B413F	515135799864	gp-yl2533-test
+INSTANCE	i-3B45412D	emi-C4A24195	128.84.9.165	172.16.28.216	running	kp-yl2533-test	0		m1.small	2014-09-10T00:05:31.132Z	redcloud				monitoring-disabled	128.84.9.165	172.16.28.216			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-651E3E25	2014-09-10T00:05:31.450Z	true		
+RESERVATION	r-FE953EA1	515135799864	gp-sh824-test
+INSTANCE	i-EC793EC7	emi-C4A24195	128.84.9.141	172.16.217.56	running	kp-hw342-test	0		m1.small	2014-09-10T17:12:02.606Z	redcloud				monitoring-disabled	128.84.9.141	172.16.217.56			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-43A1422D	2014-09-10T17:12:02.939Z	true		
+RESERVATION	r-667A4135	515135799864	gp-jc2838-test
+INSTANCE	i-76C73C7B	emi-C4A24195			stopped	kp-jc2838-test	0		m1.small	2014-09-03T18:29:42.679Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-A8EF3AA4	2014-09-03T18:29:42.979Z	true		
+RESERVATION	r-A84C41CC	515135799864	gp-vs444-lab1
+INSTANCE	i-E26A4204	emi-C4A24195	128.84.9.150	172.16.89.113	running	kp-vs444-lab1	0		m1.small	2014-09-10T01:44:10.067Z	redcloud				monitoring-disabled	128.84.9.150	172.16.89.113			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-FE4441BF	2014-09-10T01:44:10.405Z	true		
+RESERVATION	r-76514657	515135799864	gp-xl267-cs5413
+INSTANCE	i-0A404179	emi-C4A24195	128.84.9.102	172.16.19.231	running	kp-xl267-cs5413	0		m1.small	2014-09-08T17:22:27.039Z	redcloud				monitoring-disabled	128.84.9.102	172.16.19.231			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-305F3FF4	2014-09-08T17:22:27.355Z	true		
+RESERVATION	r-94783F77	515135799864	gp-ww254-test
+INSTANCE	i-EBDA4013	emi-C4A24195			stopped	kp-ww254-test	0		m1.small	2014-09-03T16:33:15.216Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-DF6A3C91	2014-09-03T16:33:15.560Z	true		
+RESERVATION	r-83CD4223	515135799864	gp-mad293-test
+INSTANCE	i-2B094656	emi-C4A24195			stopped	kp-mad293-test	0		m1.small	2014-09-02T01:45:32.084Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-7C60400E	2014-09-02T01:45:32.612Z	true		
+RESERVATION	r-4BB9499C	515135799864	gp-reh237-test
+INSTANCE	i-90014563	emi-C4A24195	128.84.9.169	172.16.184.53	running	kp-reh237-test	0		m1.small	2014-09-03T17:00:40.887Z	redcloud				monitoring-disabled	128.84.9.169	172.16.184.53			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-F08B3C95	2014-09-03T17:00:41.247Z	true		
+RESERVATION	r-DC17459F	515135799864	gp-yl2533-test
+INSTANCE	i-B7DA40EF	emi-C4A24195			stopped	kp-yl2533-test	0		m1.small	2014-09-03T01:19:55.375Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-60993AC3	2014-09-03T01:19:55.669Z	true		
+RESERVATION	r-1A284485	515135799864	gp-msw234-test
+INSTANCE	i-F2A23D43	emi-C4A24195			stopped	kp-msw234-test	0		m1.small	2014-09-06T03:08:38.787Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-DF6A3E6B	2014-09-06T03:08:39.112Z	true		
+RESERVATION	r-7256416F	515135799864	gp-jsh263-lab0
+INSTANCE	i-00214377	emi-C4A24195			stopped	kp-jsh263-test	0		m1.small	2014-09-03T16:33:35.024Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-029E3E46	2014-09-03T16:33:35.402Z	true		
+RESERVATION	r-A93A457C	515135799864	gp-zl456-test
+INSTANCE	i-C25E4105	emi-C4A24195			stopped	kp-zl456-test	0		m1.small	2014-09-10T00:20:51.789Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-5EB94101	2014-09-10T00:20:52.117Z	true		
+RESERVATION	r-CFD842D6	515135799864	default
+INSTANCE	i-DEF83F5C	emi-5A38465A	128.84.9.138	172.16.138.34	running	zhiming	0		m1.small	2014-08-28T03:43:20.873Z	redcloud				monitoring-enabled	128.84.9.138	172.16.138.34			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-CCBA3B71	2014-08-28T03:43:21.185Z	true		
+BLOCKDEVICE	/dev/sdc	vol-58B2425C	2014-08-28T03:45:22.096Z	false		
+TAG	instance	i-DEF83F5C	Name	local-test
+RESERVATION	r-91F53C9A	515135799864	gp-nn262-test
+INSTANCE	i-82643DF8	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-09T22:06:52.315Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-273B3852	2014-09-09T22:06:52.637Z	true		
+RESERVATION	r-92634167	515135799864	gp-jlf248-test
+INSTANCE	i-D1E63F25	emi-C4A24195			stopped	kp-jlf248-test	0		m1.small	2014-09-04T03:15:36.477Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-33D03C78	2014-09-04T03:15:36.778Z	true		
+RESERVATION	r-E76C41C5	515135799864	gp-xf54-test
+INSTANCE	i-08FD4108	emi-C4A24195			stopped	kp-xf54-test	0		m1.small	2014-09-04T17:49:48.420Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-D97743A6	2014-09-04T17:49:48.722Z	true		
+RESERVATION	r-0B783FF9	515135799864	gp-jrm369-test
+INSTANCE	i-5370405E	emi-C4A24195			stopped	kp-jrm369-test	0		m1.small	2014-09-02T21:07:52.443Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-903E3C6A	2014-09-02T21:07:52.797Z	true		
+RESERVATION	r-76ED4704	515135799864	gp-na298-lab0
+INSTANCE	i-F715418B	emi-C4A24195			stopped	kp-na298-lab0	0		m1.small	2014-09-03T17:31:06.517Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-4FB04247	2014-09-03T17:31:06.918Z	true		
+RESERVATION	r-65B545FF	515135799864	gp-hw342-test
+INSTANCE	i-68013D93	emi-C4A24195			stopped	kp-hw342-test	0		m1.small	2014-09-04T11:17:48.298Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-82733DFA	2014-09-04T11:17:48.633Z	true		
+RESERVATION	r-3ACC3F59	515135799864	gp-bjk77-test
+INSTANCE	i-A606401A	emi-C4A24195			stopped	kp-bjk77-test	0		m1.small	2014-09-04T13:49:49.408Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-4F733F32	2014-09-04T13:49:49.713Z	true		
+RESERVATION	r-385A4449	515135799864	gp-nn262-test
+INSTANCE	i-E7E33E37	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-09T18:11:31.730Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-345541D8	2014-09-09T18:11:32.093Z	true		
+RESERVATION	r-196F48A4	515135799864	gp-sh824-test
+INSTANCE	i-28314209	emi-C4A24195	128.84.9.157	172.16.217.55	running	kp-sh824-test	0		m1.small	2014-09-10T17:21:37.491Z	redcloud				monitoring-disabled	128.84.9.157	172.16.217.55			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-4DDC3C4D	2014-09-10T17:21:37.808Z	true		
+RESERVATION	r-E46A3FF9	515135799864	gp-kc789-test
+INSTANCE	i-6B78451F	emi-C4A24195			stopped	kp-kc789-test	0		m1.small	2014-09-03T21:15:20.717Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-8AB94382	2014-09-03T21:15:21.022Z	true		
+RESERVATION	r-74EC429D	515135799864	gp-ys429-test
+INSTANCE	i-2F8741C5	emi-C4A24195			stopped	kp-ys429-test	0		m1.small	2014-09-11T22:59:49.659Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-AAF23FCC	2014-09-11T22:59:50.138Z	true		
+RESERVATION	r-7C04429A	515135799864	gp-jc2838-test
+INSTANCE	i-6A5C414A	emi-C4A24195			stopped	kp-jc2838-test	0		m1.small	2014-09-03T18:38:36.449Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-B4063E7D	2014-09-03T18:38:36.774Z	true		
+RESERVATION	r-1FFC40C2	515135799864	gp-saa245-lab0
+INSTANCE	i-68464364	emi-C4A24195	128.84.9.171	172.16.236.246	running	kp-saa245-lab	0		m1.small	2014-09-10T14:50:18.427Z	redcloud				monitoring-disabled	128.84.9.171	172.16.236.246			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-FF533CD1	2014-09-10T14:50:18.754Z	true		
+RESERVATION	r-331340B4	515135799864	gp-ga286-lab0
+INSTANCE	i-30784075	emi-C4A24195			stopped	kp-ga286-lab0	0		m1.small	2014-09-03T14:23:07.373Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-F3A33D70	2014-09-03T14:23:07.748Z	true		
+RESERVATION	r-D4A5418B	515135799864	gp-bjk77-test
+INSTANCE	i-9BC442DF	emi-C4A24195			stopped	kp-bjk77-test	0		m1.small	2014-09-04T14:14:36.405Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-DA4E3FAE	2014-09-04T14:14:36.741Z	true		
+RESERVATION	r-BF46402C	515135799864	gp-nn262-test
+INSTANCE	i-FA444387	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-09T16:19:19.785Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-CAA03BB9	2014-09-09T16:19:20.212Z	true		
+RESERVATION	r-476542A6	515135799864	gp-vs444-lab1
+INSTANCE	i-BCF84408	emi-C4A24195			stopped	kp-vs444-lab1	0		m1.small	2014-09-07T23:45:33.180Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-01473DA7	2014-09-07T23:45:33.489Z	true		
+RESERVATION	r-63633F14	515135799864	gp-hw342-test
+INSTANCE	i-4135448C	emi-C4A24195			stopped	kp-hw342-test	0		m1.small	2014-09-04T03:28:55.526Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-37203DAF	2014-09-04T03:28:55.836Z	true		
+BLOCKDEVICE	/dev/sdf	vol-A9113D06	2014-09-05T15:33:26.521Z	false		
+RESERVATION	r-92473F44	515135799864	gp-ww254-test
+INSTANCE	i-507242AD	emi-C4A24195	128.84.9.166	172.16.210.243	running	kp-ww254-test	0		m1.small	2014-09-03T16:26:13.550Z	redcloud				monitoring-disabled	128.84.9.166	172.16.210.243			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-DC103786	2014-09-03T16:26:13.893Z	true		
+RESERVATION	r-F73E4442	515135799864	gp-dsd96-test
+INSTANCE	i-6CC04317	emi-C4A24195			stopped	kp-dsd96-test	0		m1.small	2014-09-04T16:07:10.820Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-365A44A9	2014-09-04T16:07:12.139Z	true		
+RESERVATION	r-7BD5456C	515135799864	gp-ys429-test
+INSTANCE	i-603D42CB	emi-C4A24195			stopped	kp-ys429-test	0		m1.small	2014-09-03T17:23:13.392Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-348A3EDE	2014-09-03T17:23:13.731Z	true		
+RESERVATION	r-AB354339	515135799864	gp-atw49-test
+INSTANCE	i-C867496D	emi-C4A24195			stopped	kp-atw49-test	0		m1.small	2014-09-03T21:43:41.566Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-8F894117	2014-09-03T21:43:41.872Z	true		
+RESERVATION	r-8A394226	515135799864	gp-gs563-test
+INSTANCE	i-F9993FE9	emi-C4A24195	128.84.9.167	172.16.233.9	running	kp-gs563-test	0		m1.small	2014-09-04T22:38:45.960Z	redcloud				monitoring-disabled	128.84.9.167	172.16.233.9			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-CB503B6A	2014-09-04T22:38:46.272Z	true		
+RESERVATION	r-17EE44CD	515135799864	gp-hw342-test
+INSTANCE	i-D55942D9	emi-A3FD41FA	128.84.9.137	172.16.156.147	running	kp-hw342-test	0		c1.medium	2014-09-07T05:01:52.795Z	redcloud				monitoring-enabled	128.84.9.137	172.16.156.147			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-38853B06	2014-09-07T05:01:53.216Z	true		
+BLOCKDEVICE	/dev/sdf	vol-AE1E3C1F	2014-09-07T05:07:29.992Z	false		
+RESERVATION	r-85BD419F	515135799864	gp-gdz4-cs5413
+INSTANCE	i-504C4532	emi-C4A24195			stopped	kp-gdz4-cs5413	0		m1.small	2014-09-05T01:49:37.397Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-A6FE44AC	2014-09-05T01:49:37.739Z	true		
+RESERVATION	r-DBF64261	515135799864	gp-sh824-test
+INSTANCE	i-DAB24224	emi-C4A24195			stopped	kp-sh824-test	0		m1.small	2014-09-04T01:00:19.620Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-DDDF3CC0	2014-09-04T01:00:19.934Z	true		
+RESERVATION	r-6ED440B5	515135799864	gp-hw342-test
+INSTANCE	i-45334568	emi-C4A24195			stopped	kp-hw342-0	0		c1.medium	2014-08-28T14:43:00.978Z	redcloud				monitoring-enabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-08E14038	2014-08-28T14:43:01.301Z	true		
+TAG	instance	i-45334568	Name	vm-hw342-test
+RESERVATION	r-2B573C7F	515135799864	gp-nn262-test
+INSTANCE	i-9E4F41CE	emi-C4A24195			stopped	kp-nn262-test	0		m1.small	2014-09-09T23:09:35.820Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-FB83404C	2014-09-09T23:09:36.142Z	true		
+RESERVATION	r-8EDD42DE	515135799864	gp-hw342-test
+INSTANCE	i-5B8240A5	emi-C4A24195			stopped	kp-hw342-test	0		m1.small	2014-08-29T20:05:53.670Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-36F83D92	2014-08-29T20:05:54.105Z	true		
+TAG	instance	i-5B8240A5	Name	vm-hw342-test2
+RESERVATION	r-D8064074	515135799864	gp-nn262-test
+INSTANCE	i-090D45F3	emi-C4A24195	128.84.9.143	172.16.137.14	running	kp-nn262-test	0		m1.small	2014-09-10T00:45:31.339Z	redcloud				monitoring-disabled	128.84.9.143	172.16.137.14			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-2E863C11	2014-09-10T00:45:31.677Z	true		
+RESERVATION	r-C8853C25	515135799864	gp-kyl27-test
+INSTANCE	i-67803F6B	emi-C4A24195	128.84.9.156	172.16.218.217	running	kp-kyl27-test	0		m1.small	2014-09-04T22:56:05.651Z	redcloud				monitoring-disabled	128.84.9.156	172.16.218.217			ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-7B0243DD	2014-09-04T22:56:05.967Z	true		
+RESERVATION	r-66544524	515135799864	gp-ww254-test
+INSTANCE	i-F1C2472D	emi-C4A24195			stopped	kp-ww254-test	0		m1.small	2014-09-03T00:07:02.634Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-18373F32	2014-09-03T00:07:02.981Z	true		
+RESERVATION	r-8BE93D07	515135799864	gp-rf356-test
+INSTANCE	i-7FBE39E8	emi-C4A24195			stopped	kp-rf356-test	0		m1.small	2014-09-13T03:27:50.288Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-5DAD3E75	2014-09-13T03:27:50.657Z	true		
+RESERVATION	r-5B1145E9	515135799864	gp-jj329-lab1
+INSTANCE	i-C06A45A4	emi-52243F73			stopped	kp-jj329-lab1	0		m1.small	2014-09-11T03:03:42.309Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-38523EA9	2014-09-11T03:03:42.653Z	false		
+RESERVATION	r-DE474230	515135799864	gp-xl267-test
+INSTANCE	i-0CDE3EE7	emi-C4A24195			stopped	kp-xl267-test	0		m1.small	2014-09-04T17:41:42.867Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-0F643E12	2014-09-04T17:41:43.172Z	true		
+RESERVATION	r-CBEC427A	515135799864	gp-jc2838-test
+INSTANCE	i-943C4384	emi-C4A24195			stopped	kp-jc2838-test	0		m1.small	2014-09-03T18:18:35.811Z	redcloud				monitoring-disabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-B9F6407E	2014-09-03T18:18:36.111Z	true		
+RESERVATION	r-B3553E8C	515135799864	SuperCloud
+INSTANCE	i-A0A84365	emi-5A38465A			stopped	zhiming	0		c1.medium	2014-08-12T20:13:59.920Z	redcloud				monitoring-enabled					ebs					hvm						
+BLOCKDEVICE	/dev/sda	vol-19343BF7	2014-08-12T20:14:00.212Z	true		
+TAG	instance	i-A0A84365	Name	RedCloud-Compute1
