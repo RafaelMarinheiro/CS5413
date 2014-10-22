@@ -371,7 +371,7 @@ static unsigned int sniffer_nf_hook(unsigned int hook, struct sk_buff* skb,
             if(will_capture){
                 struct sk_buff * pcopy;
                 struct skb_list * new_node;
-                // printk(KERN_DEBUG "CAPTURED %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);    
+                printk(KERN_DEBUG "CAPTURED %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);    
             
                 pcopy = skb_clone(skb, GFP_ATOMIC);
                 new_node = kmalloc(sizeof(struct skb_list), GFP_ATOMIC);
@@ -415,10 +415,10 @@ static unsigned int sniffer_nf_hook(unsigned int hook, struct sk_buff* skb,
             }
 
             if(active){
-                // printk(KERN_DEBUG "ACCEPTED %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);
+                printk(KERN_DEBUG "ACCEPTED %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);
                 return NF_ACCEPT;
             } else{
-                // printk(KERN_DEBUG "REJECTED %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);
+                printk(KERN_DEBUG "REJECTED %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);
                 return NF_DROP;
             }
         }
