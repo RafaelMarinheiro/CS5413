@@ -5,6 +5,10 @@
  * based on netslice implementation of Tudor Marian <tudorm@cs.cornell.edu>
  */
 
+#include <linux/semaphore.h>
+#include <linux/spinlock.h>
+#include <linux/spinlock_types.h>
+
 #include <linux/module.h>
 #include <linux/cdev.h>
 #include <linux/types.h>
@@ -26,14 +30,14 @@
 #include "sniffer_ioctl.h"
 #include "sniffer_flowtable.h"
 
-MODULE_AUTHOR("");
+MODULE_AUTHOR("Rafael Marinheiro");
 MODULE_DESCRIPTION("CS5413 Packet Filter / Sniffer Framework");
 MODULE_LICENSE("Dual BSD/GPL");
 
 static dev_t sniffer_dev;
 static struct cdev sniffer_cdev;
 static int sniffer_minor = 1;
-atomic_t refcnt;
+static atomic_t refcnt;
 
 static int hook_chain = NF_INET_LOCAL_IN;
 static int hook_prio = NF_IP_PRI_FIRST;
@@ -42,12 +46,23 @@ struct nf_hook_ops nf_hook_ops;
 // skb buffer between kernel and user space
 struct list_head skbs;
 
+//Lock free
+struct list_head * skb_buf_first = &skbs;
+struct list_head * skb_buf_last = &skbs;
+struct list_head * skb_buf_divider = &skbs;
+
 // skb wrapper for buffering
+static DEFINE_SEMAPHORE(skb_buffer_mutex);
+static DEFINE_SPINLOCK(skb_buffer_spinlock);
+static DECLARE_WAIT_QUEUE_HEAD(skb_buffer_waitqueue);
 struct skb_list 
 {
     struct list_head list;
     struct sk_buff *skb;
 };
+
+char my_unique_buf[2000];
+struct ts_config * pattern_matcher;
 
 ////////////////
 // Flow table //
@@ -69,12 +84,18 @@ int sniffer_read_procfile(char *buf, char **start, off_t offset, int count,
     char helper[21];
 
     len += sprintf(buf+len, "%-4s%-10s%-20s%-10s%-20s%-10s%-10s\n", "#", "[command]", "[src_ip]", "[src_port]", "[dst_ip]", "[dst_port]", "[action]");
-    printk(KERN_DEBUG "%-4s%-10s%-20s%-10s%-20s%-10s%-10s\n", "#", "[command]", "[src_ip]", "[src_port]", "[dst_ip]", "[dst_port]", "[action]");
+    // printk(KERN_DEBUG "%-4s%-10s%-20s%-10s%-20s%-10s%-10s\n", "#", "[command]", "[src_ip]", "[src_port]", "[dst_ip]", "[dst_port]", "[action]");
     list_for_each_entry(rule, &(flow_table.list), list){
         if(len > limit) break;
 
         len += sprintf(buf+len,"%-4d",i);
-        len += sprintf(buf+len,"%-10s","enable");
+        
+        if(IS_FLOW_ACTIVE(rule->entry.action)){
+            len += sprintf(buf+len,"%-10s","enable");
+        } else{
+            len += sprintf(buf+len,"%-10s","disable");
+        }
+        
         if(rule->entry.any_src_ip){
             len += sprintf(buf+len,"%-20s", "any");
         } else{
@@ -101,12 +122,14 @@ int sniffer_read_procfile(char *buf, char **start, off_t offset, int count,
             len += sprintf(buf+len,"%-10d", rule->entry.dest_port);
         }
 
-        if(rule->entry.action == SNIFFER_ACTION_NULL){
+        if(GET_FLOW_ACTION(rule->entry.action) == SNIFFER_ACTION_NULL){
             len += sprintf(buf+len,"%-10s", "None");
-        } else if(rule->entry.action == SNIFFER_ACTION_CAPTURE){
+        } else if(GET_FLOW_ACTION(rule->entry.action) == SNIFFER_ACTION_CAPTURE){
             len += sprintf(buf+len,"%-10s", "Capture");
-        } else{
+        } else if(GET_FLOW_ACTION(rule->entry.action) == SNIFFER_ACTION_DPI){
             len += sprintf(buf+len,"%-10s", "DPI");
+        } else{
+            len += sprintf(buf+len,"%-10s", "<ERROR>");
         }
         len += sprintf(buf+len, "\n");
         i++;
@@ -117,44 +140,102 @@ int sniffer_read_procfile(char *buf, char **start, off_t offset, int count,
     return len;
 }
 
-
-// {
-//          int i, j, len = 0;
-//          int limit = count - 80; /* Don't print more than this */
-//          for (i = 0; i < scull_nr_devs && len <= limit; i++) {
-//              struct scull_dev *d = &scull_devices[i];
-//              struct scull_qset *qs = d->data;
-//              if (down_interruptible(&d->sem))
-//                  return -ERESTARTSYS;
-//              len += sprintf(buf+len,"\nDevice %i: qset %i, q %i, sz %li\n",
-//                      i, d->qset, d->quantum, d->size);
-//              for (; qs && len <= limit; qs = qs->next) { /* scan the list */
-//                  len += sprintf(buf + len, "  item at %p, qset at %p\n",
-//                          qs, qs->data);
-//                  if (qs->data && !qs->next) /* dump only the last item */
-//                      for (j = 0; j < d->qset; j++) {
-// ￼￼} }
-// if (qs->data[j])
-//     len += sprintf(buf + len,
-//             "    % 4i: %8p\n",
-//             j, qs->data[j]);
-//              up(&scull_devices[i].sem);
-//          }
-// *eof = 1;
-// return len; }
-
 static inline struct tcphdr * ip_tcp_hdr(struct iphdr *iph)
 {
     struct tcphdr *tcph = (void *) iph + iph->ihl*4;
     return tcph;
 }
 
+static inline void print_skb(struct sk_buff * skb){
+    struct iphdr *iph;
+    struct tcphdr *tcph;
+    struct sniffer_flow_entry flow;
+    iph = ip_hdr(skb);
+    tcph = ip_tcp_hdr(iph);
+    flow.src_ip = iph->saddr;
+    flow.src_port = ntohs(tcph->source);
+    flow.dest_ip = iph->daddr;
+    flow.dest_port = ntohs(tcph->dest);
+    printk(KERN_DEBUG "READING %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port); 
+}
+
 /* From kernel to userspace */
 static ssize_t 
 sniffer_fs_read(struct file *file, char __user *buf, size_t count, loff_t *pos)
 {
-    printk(KERN_DEBUG "Hello World\n");
-    return 0;
+    struct skb_list * node;
+    struct sk_buff * packet;
+    int len;
+    void * mine_data;
+    int retval = 0;
+
+    if(!atomic_dec_and_test(&refcnt)){
+        int at;
+        at = atomic_read(&refcnt);
+        printk(KERN_DEBUG "Ocupado =( %d\n", at);
+        retval = -EBUSY;
+        goto i_have_atomic;
+    }
+
+    if(down_interruptible(&skb_buffer_mutex)){
+        retval = -ERESTARTSYS;
+        goto i_have_atomic;
+    }
+
+    while (skb_buf_divider == skb_buf_last){
+        up(&skb_buffer_mutex);
+
+        if(file->f_flags & O_NONBLOCK){
+            retval = -EAGAIN;
+            goto i_have_atomic;
+        }
+
+        if(wait_event_interruptible(skb_buffer_waitqueue, skb_buf_divider != skb_buf_last)){
+            retval = -ERESTARTSYS;
+            goto i_have_atomic;
+        }
+
+        if(down_interruptible(&skb_buffer_mutex)){
+            retval = -ERESTARTSYS;
+            goto i_have_atomic;
+        }
+    }
+    
+
+    node = list_entry(skb_buf_divider->next, struct skb_list, list);
+    packet = node->skb;
+    len = packet->len;
+
+    // print_skb(packet);
+
+    if(len > count){
+        printk(KERN_DEBUG "Need %d bytes\n", len);
+        retval = -EFAULT;
+        goto i_have_mutex;
+    }
+
+    mine_data = skb_header_pointer(packet, 0, len, my_unique_buf);
+    if(mine_data != NULL){
+        copy_to_user(buf, mine_data, len);
+    } else{
+        len = 0;
+    }
+
+    skb_buf_divider = skb_buf_divider->next;
+    kfree_skb(packet);
+
+    retval = len;
+
+    // printk(KERN_DEBUG "READ %d bytes\n", len);
+    // printk("LIST: %x %x %x\n", skb_buf_first, skb_buf_divider, skb_buf_last);
+
+    i_have_mutex:
+        up(&skb_buffer_mutex);
+    i_have_atomic:
+        atomic_inc(&refcnt);
+    i_have_nothing:
+
+    return retval;
 }
 
 static int sniffer_fs_open(struct inode *inode, struct file *file)
@@ -250,16 +331,94 @@ static unsigned int sniffer_nf_hook(unsigned int hook, struct sk_buff* skb,
 
         if (ntohs(tcph->dest) != 22) {
             struct sniffer_flow_entry flow;
-            flow.src_ip = ntohl(iph->saddr);
+            unsigned int action;
+            unsigned int active;
+            unsigned int will_capture;
+
+            flow.src_ip = iph->saddr;
             flow.src_port = ntohs(tcph->source);
-            flow.dest_ip = ntohl(iph->daddr);
+            flow.dest_ip = iph->daddr;
             flow.dest_port = ntohs(tcph->dest);
 
-            if(match_sniffer_flow_table(&flow_table, &flow) != SNIFFER_ACTION_NOT_FOUND){
-                printk(KERN_DEBUG "Accepted %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);    
+            action = match_sniffer_flow_table(&flow_table, &flow);
+            active = IS_FLOW_ACTIVE(action);
+            action = GET_FLOW_ACTION(action);
+            will_capture = 0;
+
+            if(action == SNIFFER_ACTION_NOT_FOUND){
+                active = 0;
+                will_capture = 0;
+            } else if(action == SNIFFER_ACTION_NULL){
+                //Do nothing
+                will_capture = 0;
+            } else if(action == SNIFFER_ACTION_CAPTURE){
+                will_capture = 1;
+            } else if(action == SNIFFER_ACTION_DPI){
+                int pos;
+                struct ts_state state;
+
+                /* search for "hanky" at offset 20 until end of packet */
+                pos = skb_find_text(skb, 0, INT_MAX, pattern_matcher, &state);
+
+                if(pos != UINT_MAX){
+                    will_capture = 1;
+                }
+            } else{
+                active = 0;
+                will_capture = 0;
+            }
+
+            if(will_capture){
+                struct sk_buff * pcopy;
+                struct skb_list * new_node;
+                // printk(KERN_DEBUG "CAPTURED %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);    
+            
+                pcopy = skb_clone(skb, GFP_ATOMIC);
+                new_node = kmalloc(sizeof(struct skb_list), GFP_ATOMIC);
+                new_node->skb = pcopy;
+                if(pcopy != NULL && new_node != NULL){
+                    // Spinlock
+                    int sp_flags;
+                    spin_lock_irqsave(&skb_buffer_spinlock, sp_flags);
+                    {
+                        //Lock Free
+                        new_node->list.next = &skbs;
+                        skb_buf_last->next = &(new_node->list);
+                        skb_buf_last = skb_buf_last->next;
+
+                        // printk("LIST: %x %x %x | %x\n", skb_buf_first, skb_buf_divider, skb_buf_last, skb_buf_first->next);
+
+                        while(skb_buf_first != skb_buf_divider){
+                            struct skb_list * node;
+                            struct sk_buff * packet;
+                            struct list_head * temp;
+
+                            temp = skb_buf_first;
+                            skb_buf_first = skb_buf_first->next;
+
+                            if(temp != &skbs){
+                                node = list_entry(temp, struct skb_list, list);
+                                kfree(node);
+                            }
+
+                            // printk("LIST: %x %x %x\n", skb_buf_first, skb_buf_divider, skb_buf_last);
+                        }
+                    }
+                    spin_unlock_irqrestore(&skb_buffer_spinlock, sp_flags);
+
+                    wake_up_interruptible(&skb_buffer_waitqueue);
+                } else{
+                    if(pcopy) kfree_skb(pcopy);
+                    if(new_node) kfree(new_node);
+                    printk(KERN_ERR "Not enough memory to copy the packet\n");
+                }
+            }
+
+            if(active){
+                // printk(KERN_DEBUG "ACCEPTED %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);
                 return NF_ACCEPT;
             } else{
-                printk(KERN_DEBUG "Rejected %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);    
+                // printk(KERN_DEBUG "REJECTED %d.%d.%d.%d:%d -> %d.%d.%d.%d:%d\n", MY_NIPQUAD(flow.src_ip), flow.src_port, MY_NIPQUAD(flow.dest_ip), flow.dest_port);
                 return NF_DROP;
             }
         }
@@ -270,6 +429,7 @@ static unsigned int sniffer_nf_hook(unsigned int hook, struct sk_buff* skb,
 static int __init sniffer_init(void)
 {
     int status = 0;
+
     printk(KERN_DEBUG "sniffer_init\n");
 
     //EDITED
@@ -292,8 +452,16 @@ static int __init sniffer_init(void)
         
     }
 
-    atomic_set(&refcnt, 0);
+    atomic_set(&refcnt, 1);
     INIT_LIST_HEAD(&skbs);
+
+    create_proc_read_entry("sniffer", 0, NULL, sniffer_read_procfile, NULL);
+
+    pattern_matcher = textsearch_prepare("kmp", DPI_KEY, DPI_KEY_LEN, GFP_KERNEL, TS_AUTOLOAD);
+    if(pattern_matcher == NULL){
+        status = -ENOMEM;
+        goto out_matcher;
+    } 
 
     /* register netfilter hook */
     memset(&nf_hook_ops, 0, sizeof(nf_hook_ops));
@@ -307,11 +475,12 @@ static int __init sniffer_init(void)
         goto out_add;
     }
 
-    create_proc_read_entry("sniffer", 0, NULL, sniffer_read_procfile, NULL);
-
     return 0;
 
 out_add:
+    textsearch_destroy(pattern_matcher);
+out_matcher:
+    remove_proc_entry("sniffer", NULL);
     cdev_del(&sniffer_cdev);
 out_cdev:
     unregister_chrdev_region(sniffer_dev, sniffer_minor);
@@ -321,11 +490,12 @@ out:
 
 static void __exit sniffer_exit(void)
 {
-    remove_proc_entry("sniffer", NULL);
     if (nf_hook_ops.hook) {
         nf_unregister_hook(&nf_hook_ops);
         memset(&nf_hook_ops, 0, sizeof(nf_hook_ops));
     }
+    textsearch_destroy(pattern_matcher);
+    remove_proc_entry("sniffer", NULL);
     cdev_del(&sniffer_cdev);
     unregister_chrdev_region(sniffer_dev, sniffer_minor);
 }

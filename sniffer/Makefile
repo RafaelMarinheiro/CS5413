@@ -18,6 +18,18 @@ PWD := $(shell pwd)
 all: default sniffer_control sniffer_read
 #all: default tester 
 
+pre-test:
+	sudo rmmod sniffer_mod.ko
+	sudo rm -f /dev/sniffer.dev
+
+test:
+	sudo insmod ./sniffer_mod.ko
+	sudo mknod /dev/sniffer.dev c 251 0
+	./sniffer_control --mode enable --action capture
+	cat /proc/sniffer
+
+redo: pre-test all test
+
 default:
 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
 

@@ -28,6 +28,8 @@
 	//Remove all that match the flow
 	int disable_sniffer_flow(struct sniffer_flow_table * table, struct sniffer_flow_entry * flow);
 
+	int remove_previous_flow(struct sniffer_flow_table * table, struct sniffer_flow_entry * flow);
+
 	//////////////////////////////
 	//Implementation            //
 	//////////////////////////////
@@ -69,37 +71,14 @@
 		int ret = 0;
 		
 		struct sniffer_flow_table * new_rule = kmalloc(sizeof(struct sniffer_flow_table), GFP_KERNEL);
-		
+		flow->action = SET_FLOW_ACTIVE(flow->action);
+
 		if(new_rule){
-			int removed = disable_sniffer_flow(table, flow);
+			int removed = remove_previous_flow(table, flow);
 
 			new_rule->entry = *flow;
 			list_add(&(new_rule->list), &(table->list));
 			ret = removed;
-			
-			{
-				printk(KERN_INFO, "Adding entry ");
-				if(flow->any_src_ip){
-					printk(KERN_INFO, "<ANY>:");
-				} else{
-					printk(KERN_INFO, "%pI4:", flow->src_ip);
-				}
-				if(flow->any_src_port){
-					printk(KERN_INFO, "<ANY> -> ");
-				} else{
-					printk(KERN_INFO, "%d -> ", flow->src_port);
-				}
-				if(flow->any_dest_ip){
-					printk(KERN_INFO, "<ANY>:");
-				} else{
-					printk(KERN_INFO, "%pI4:", flow->dest_ip);
-				}
-				if(flow->any_dest_port){
-					printk(KERN_INFO, "<ANY>\n");
-				} else{
-					printk(KERN_INFO, "%d\n", flow->dest_port);
-				}
-			}
 		} else{
 			ret = -1;
 		}
@@ -108,6 +87,24 @@
 	}
 
 	int disable_sniffer_flow(struct sniffer_flow_table * table, struct sniffer_flow_entry * flow){
+		int ret = 0;
+		
+		struct sniffer_flow_table * new_rule = kmalloc(sizeof(struct sniffer_flow_table), GFP_KERNEL);
+
+		if(new_rule){
+			int removed = remove_previous_flow(table, flow);
+
+			new_rule->entry = *flow;
+			list_add(&(new_rule->list), &(table->list));
+			ret = removed;
+		} else{
+			ret = -1;
+		}
+
+		return ret;
+	}
+
+	int remove_previous_flow(struct sniffer_flow_table * table, struct sniffer_flow_entry * flow){
 		struct sniffer_flow_table * rule, * temp_rule;
 
 		unsigned int removed = 0;
@@ -115,30 +112,6 @@
 		list_for_each_entry_safe(rule, temp_rule, &(table->list), list){
 			//If the rule is contained, then we remove it
 			if(match_sniffer_flow_entry(flow, &(rule->entry)) != SNIFFER_ACTION_NOT_FOUND){
-				{
-					printk(KERN_INFO, "Removing entry ");
-					if(rule->entry.any_src_ip){
-						printk(KERN_INFO, "<ANY>:");
-					} else{
-						printk(KERN_INFO, "%pI4:", rule->entry.src_ip);
-					}
-					if(rule->entry.any_src_port){
-						printk(KERN_INFO, "<ANY> -> ");
-					} else{
-						printk(KERN_INFO, "%d -> ", rule->entry.src_port);
-					}
-					if(rule->entry.any_dest_ip){
-						printk(KERN_INFO, "<ANY>:");
-					} else{
-						printk(KERN_INFO, "%pI4:", rule->entry.dest_ip);
-					}
-					if(rule->entry.any_dest_port){
-						printk(KERN_INFO, "<ANY>\n");
-					} else{
-						printk(KERN_INFO, "%d\n", rule->entry.dest_port);
-					}
-				}
-
 				list_del(&(rule->list));
 				kfree(rule);
 				removed++;

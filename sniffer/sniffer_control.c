@@ -152,6 +152,8 @@ int main(int argc, char **argv)
         } else{
             // printf("SUCCESS\n");
         }
+    } else{
+        usage();
     }
 
     close(fd);
