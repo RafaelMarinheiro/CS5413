@@ -5,10 +5,12 @@
 #include "Util.h"
 
 typedef struct{
-	Proxy_Acceptor_t acceptor;
+	Proxy_Acceptor_t * acceptor;
 	Proxy_Buffer_t * buffer[2];
 	int timeout;
 	int sockets[2];
+	int reading[2];
+	double time_clock[2];
 	Proxy_Error_t error;
 } Proxy_Bridge_t;
 
